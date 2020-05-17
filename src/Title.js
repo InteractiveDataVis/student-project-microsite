@@ -1,7 +1,19 @@
 import { select } from "d3";
-const Title = () => {
-  console.log("testing");
-  select("#container").append("h1").text("Interactive Data Visualization");
-};
 
-export default Title;
+export class Title {
+  constructor() {
+    this.el = select("body")
+      .append("div")
+      .attr("id", "page-title")
+      .text("Interactive Data Visualization")
+      .classed("visible", false);
+  }
+
+  makeVisible() {
+    this.el.classed("visible", true);
+  }
+
+  makeHidden() {
+    this.el.classed("visible", false);
+  }
+}

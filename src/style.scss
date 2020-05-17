@@ -1,3 +1,22 @@
 body {
-  background: palegoldenrod;
+  font-family: "Open Sans";
+}
+
+canvas#animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#page-title {
+  position: relative;
+  font-weight: 700;
+  font-size: 4em;
+  visibility: hidden;
+
+  &.visible {
+    visibility: visible;
+    color: transparent;
+    -webkit-text-stroke: black 1px;
+  }
 }
