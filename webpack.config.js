@@ -15,7 +15,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Output Management",
+      title: "Interactive Data Visualization Microsite",
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
@@ -27,12 +27,21 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(csv|tsv)$/,
+        use: ["csv-loader"],
+      },
+      {
         test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env"],
+            presets: [
+              "@babel/preset-env",
+              {
+                plugins: ["@babel/plugin-proposal-class-properties"],
+              },
+            ],
           },
         },
       },
