@@ -2,7 +2,7 @@ import { select } from "d3";
 
 export class Title {
   constructor() {
-    this.el = select("body")
+    this.el = select(".container")
       .append("div")
       .attr("id", "page-title")
       .text("Interactive Data Visualization")

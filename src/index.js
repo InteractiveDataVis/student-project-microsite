@@ -1,3 +1,4 @@
+import { select } from "d3";
 import { Animation } from "./components/Animation";
 import { Title } from "./components/Title";
 import { StudentList } from "./components/StudentList";
@@ -5,7 +6,7 @@ import { StudentList } from "./components/StudentList";
 import "./style.scss";
 
 import { appConfig } from "./utils/constants";
-const { titleDuration } = appConfig;
+const { titleDelay } = appConfig;
 
 class Controller {
   state = {
@@ -14,6 +15,7 @@ class Controller {
   };
 
   constructor() {
+    this.app = select("body").append("div").attr("class", "container");
     this.init();
   }
 
@@ -22,7 +24,14 @@ class Controller {
     this.title = new Title();
     this.studentList = new StudentList();
     this.animation.startAnimation();
-    setTimeout(() => this.title.makeVisible(), titleDuration);
+
+    // fade in the title and student list
+    setTimeout(() => {
+      this.title.makeVisible();
+      this.studentList.makeVisible();
+    }, titleDelay);
+
+    // add resize handler
     window.addEventListener("resize", () => this.resize());
   }
 

@@ -1,22 +1,54 @@
+$duration: 1000ms;
+
 body {
   font-family: "Open Sans";
 }
+div.container {
+  padding: 1em;
+  position: relative;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 100vh auto;
+  align-items: center;
+  z-index: 1;
+}
 
 canvas#animation {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
+  z-index: 0;
 }
 
 #page-title {
   position: relative;
   font-weight: 700;
   font-size: 4em;
-  visibility: hidden;
+  line-height: 1.2em;
+  opacity: 0;
+  transition: opacity $duration;
+  color: transparent;
+  -webkit-text-stroke: black 2px;
 
   &.visible {
-    visibility: visible;
-    color: transparent;
-    -webkit-text-stroke: black 1px;
+    opacity: 1;
+  }
+}
+
+#student-list {
+  position: relative;
+
+  .row {
+    opacity: 0;
+    transition: opacity $duration;
+    cursor: pointer;
+
+    &.visible {
+      opacity: 1;
+    }
+
+    &:hover {
+      font-weight: 700;
+    }
   }
 }

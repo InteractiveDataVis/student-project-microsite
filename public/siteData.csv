@@ -1,7 +1,5 @@
-Name,"Preferred Name
- (Display Name)","Description
-(up to 100-150 words about yourself or your project abstract/motivation)",Github Handle,Portfolio/Project Link,"Personal Website
-(optional)","Portfolio/Project Title 
+Name,"Preferred Name (Display Name)","Description (up to 100-150 words about yourself or your project abstract/motivation)",Github Handle,Portfolio/Project Link,"Personal Website
+(optional)","Portfolio/Project Title
 (text that will link out to your site)"
 "Beheraj,Kavya",Kavya Beheraj,"I developed two D3 projects: one uses machine learning to visualize the dominant color of paintings at the MoMA, the other is a narrative focused on challenges faced by Native American tribal schools in the US.",https://github.com/koffeeya,https://koffeeya.github.io/Interactive-Data-Viz-Portfolio/,,Interactive Data Visualization Portfolio (Spring 2020)
 "Ceslov,Rodica",,,https://github.com/ThoughtfulMind,,,
