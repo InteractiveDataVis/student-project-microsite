@@ -9,7 +9,6 @@ div.container {
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-template-rows: 100vh auto;
-  align-items: center;
   z-index: 1;
 }
 
@@ -21,7 +20,9 @@ canvas#animation {
 }
 
 #page-title {
-  position: relative;
+  position: sticky;
+  top: 3rem;
+  height: fit-content;
   font-weight: 700;
   font-size: 4em;
   line-height: 1.2em;
@@ -37,6 +38,8 @@ canvas#animation {
 
 #student-list {
   position: relative;
+  align-self: center;
+  // top: 3rem;
 
   .row {
     opacity: 0;
@@ -49,6 +52,37 @@ canvas#animation {
 
     &:hover {
       font-weight: 700;
+    }
+  }
+}
+
+#content-wrapper {
+  position: relative;
+  padding: 2rem;
+  background-color: white;
+
+  .student {
+    position: relative;
+    border-bottom: 0.5px black solid;
+    padding: 1em 0;
+
+    .student-name {
+      font-size: 3em;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .student-socials {
+      .github {
+        height: 1.5em;
+      }
+    }
+
+    .scroll-to-top {
+      position: absolute;
+      top: 2em;
+      right: 1em;
+      cursor: pointer;
     }
   }
 }

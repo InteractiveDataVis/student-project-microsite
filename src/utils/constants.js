@@ -14,6 +14,8 @@ export const keys = {
 
 export const appConfig = {
   titleDelay: 2500,
+  getName: (d) => d[keys.display_name] || d[keys.name],
+  getHash: (str) => str.toLowerCase().split(" ").join("_").split(",").join("_"),
 };
 
 export const animationConfig = {
@@ -25,6 +27,5 @@ export const animationConfig = {
 };
 
 export const listConfig = {
-  getName: (d) => d[keys.display_name] || d[keys.name],
   delay: 75,
 };

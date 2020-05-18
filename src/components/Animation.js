@@ -33,7 +33,7 @@ export class Animation {
 
   draw() {
     this.intervalCount++;
-    this.ctx.fillStyle = "rgba(210, 210, 210, 0.05)";
+    this.ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
     this.ctx.fillRect(0, 0, this.width, this.height); // clear canvas
     this.triangles.map((t) => t.update([this.x, this.y]));
   }
@@ -44,7 +44,7 @@ export class Animation {
     // reset on resize
     this.canvas.attr("width", this.width).attr("height", this.height);
     this.ctx = this.canvas.node().getContext("2d");
-    this.ctx.fillStyle = "rgba(210, 210, 210, 1)";
+    this.ctx.fillStyle = "rgba(255, 255, 255, 1)";
     this.ctx.fillRect(0, 0, this.width, this.height); // clear canvas
     this.initTriangles();
   }

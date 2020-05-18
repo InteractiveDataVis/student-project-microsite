@@ -1,14 +1,13 @@
-import { select, csv, autoType, ascending } from "d3";
-import { listConfig } from "../utils/constants";
+import { select } from "d3";
+import { listConfig, appConfig } from "../utils/constants";
 
-const { getName, delay } = listConfig;
+const { delay } = listConfig;
+const { getHash, getName } = appConfig;
 
 export class StudentList {
-  constructor() {
-    csv("public/siteData.csv", autoType).then((data) => {
-      this.data = data.sort((a, b) => ascending(getName(a), getName(b)));
-      this.init();
-    });
+  constructor(data) {
+    this.data = data;
+    this.init();
   }
 
   init() {
@@ -20,7 +19,14 @@ export class StudentList {
       .join("div")
       .attr("class", "row")
       .text(getName)
-      .style("transition-delay", (d, i) => `${i * delay}ms`);
+      .style("transition-delay", (d, i) => `${i * delay}ms`)
+      .on("click", this.scrollToName);
+  }
+
+  scrollToName(d) {
+    select(`#${getHash(getName(d))}`)
+      .node()
+      .scrollIntoView({ behavior: "smooth" });
   }
 
   makeVisible() {
