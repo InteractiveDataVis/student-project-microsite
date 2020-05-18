@@ -1,19 +1,23 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const devMode = process.env.NODE_ENV !== "production";
 
 module.exports = {
   entry: path.resolve(__dirname, "src/index.js"),
+  mode: process.env.NODE_ENV,
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
-  devtool: devMode ? "inline-source-map" : false,
+  devtool: devMode ? "inline-source-map" : "none",
   devServer: {
     contentBase: "./dist",
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: "Interactive Data Visualization Microsite",
     }),
@@ -22,6 +26,9 @@ module.exports = {
       // both options are optional
       filename: devMode ? "[name].css" : "[name].[hash].css",
       chunkFilename: devMode ? "[id].css" : "[id].[hash].css",
+    }),
+    new CopyPlugin({
+      patterns: [{ from: "public", to: "public" }],
     }),
   ],
   module: {
@@ -37,7 +44,7 @@ module.exports = {
           loader: "babel-loader",
           options: {
             presets: [
-              "@babel/preset-env",
+              ["@babel/preset-env", { modules: false }],
               {
                 plugins: ["@babel/plugin-proposal-class-properties"],
               },

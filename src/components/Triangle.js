@@ -1,8 +1,11 @@
 import { getRandom, animationConfig } from "../utils/constants";
 
-const { width, height, count, delay, drawRate } = animationConfig;
+const { getWidth, getHeight, count, delay, drawRate } = animationConfig;
 
 export class Triangle {
+  width = getWidth();
+  height = getHeight();
+
   constructor(ctx) {
     this.ctx = ctx;
     this.resetPoints();
@@ -14,7 +17,7 @@ export class Triangle {
   draw() {
     const [cx, cy] = this.calcCentroid();
     this.ctx.save();
-    this.ctx.translate(width / 2 - cx, height / 2 - cy);
+    this.ctx.translate(this.width / 2 - cx, this.height / 2 - cy);
     this.ctx.beginPath();
     this.ctx.strokeStyle = "steelblue";
     this.ctx.globalAlpha = this.opacity;
@@ -38,7 +41,7 @@ export class Triangle {
 
   checkBounds() {
     const inBounds = [this.p1, this.p2, this.p3].reduce(
-      (inBounds, { x, y }) => inBounds && x < width && y < height,
+      (inBounds, { x, y }) => inBounds && x < this.width && y < this.height,
       true
     );
     if (!inBounds && this.count > (delay / drawRate) * count)
