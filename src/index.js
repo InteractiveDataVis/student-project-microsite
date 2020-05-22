@@ -6,8 +6,9 @@ import { Content } from "./components/Content";
 
 import "./style.scss";
 
-import { appConfig } from "./utils/constants";
-const { titleDelay, getName } = appConfig;
+import { appConfig, keys } from "./utils/constants";
+const { titleDelay } = appConfig;
+const { name } = keys
 
 class Controller {
   state = {
@@ -23,8 +24,15 @@ class Controller {
     this.animation = new Animation();
     this.animation.startAnimation();
 
+    /**TO GET URL FOR  LIVE GOOGLE SHEEETS DATA,
+     * UNCOMMENT THIS:
+     * */
+    // const sheetOpt = { id: "1jg1quJkA0nngDk6mu-DBl7kv0ZYtU4XmLEmrbewTuuI", gid: 1307304957 }
+    // const sheetURL = `https://docs.google.com/spreadsheets/u/1/d/${sheetOpt.id}/export?format=csv&id=${sheetOpt.id}&gid=${sheetOpt.gid}`;
+    // console.log('sheetURL', sheetURL)
+
     csv("public/siteData.csv", autoType).then((data) => {
-      this.data = data.sort((a, b) => ascending(getName(a), getName(b)));
+      this.data = data.sort((a, b) => ascending(a[name], b[name]));
       this.init();
       console.log("this.data", this.data);
     });
@@ -62,7 +70,6 @@ class Controller {
   }
 
   handleScroll(entries) {
-    console.log('entries', entries)
     if (entries[0].isIntersecting) {
       this.title.makeFixed()
     }

@@ -1,8 +1,9 @@
 import { select } from "d3";
-import { listConfig, appConfig } from "../utils/constants";
+import { listConfig, appConfig, keys } from "../utils/constants";
 
 const { delay } = listConfig;
-const { getHash, getName } = appConfig;
+const { getHash } = appConfig;
+const { name } = keys;
 
 export class StudentList {
   constructor(data) {
@@ -18,13 +19,13 @@ export class StudentList {
       .data(this.data)
       .join("div")
       .attr("class", "row")
-      .text(getName)
+      .text(d => d[name])
       .style("transition-delay", (d, i) => `${i * delay}ms`)
       .on("click", this.scrollToName);
   }
 
   scrollToName(d) {
-    select(`#${getHash(getName(d))}`)
+    select(`#${getHash(d[name])}`)
       .node()
       .scrollIntoView({ behavior: "smooth" });
   }

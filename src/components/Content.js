@@ -4,8 +4,8 @@ import { keys, appConfig } from "../utils/constants";
 import GithubIcon from "../assets/github.svg";
 import UpArrow from "../assets/arrow_upward-24px.svg";
 
-const { getName, getHash } = appConfig;
-const { desc, github } = keys;
+const { getHash } = appConfig;
+const { desc, github, name } = keys;
 
 export class Content {
   constructor(data) {
@@ -23,13 +23,13 @@ export class Content {
       .data(this.data)
       .join("div")
       .attr("class", "student")
-      .attr("id", (d) => getHash(getName(d)));
+      .attr("id", (d) => getHash(d[name]));
 
     // name
     this.students
       .append("div")
       .attr("class", "student-name")
-      .text((d) => getName(d));
+      .text((d) => d[name]);
 
     // socials
     this.students
