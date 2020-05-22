@@ -13,7 +13,7 @@ export class Animation {
   y = this.height / 2;
 
   constructor() {
-    this.canvas = select("body")
+    this.canvas = select("#grid")
       .append("canvas")
       .attr("id", "animation")
       .attr("width", this.width)

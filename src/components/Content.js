@@ -14,7 +14,7 @@ export class Content {
   }
 
   init() {
-    this.contentWrapper = select("body")
+    this.contentWrapper = select("#grid")
       .append("div")
       .attr("id", "content-wrapper");
 
@@ -57,5 +57,17 @@ export class Content {
 
   scrollToTop() {
     select(`body`).node().scrollIntoView({ behavior: "smooth" });
+  }
+
+  get node() {
+    return this.contentWrapper.node()
+  }
+
+  makeFixed(headerHeight = 250) {
+    console.log('in make fixed')
+    this.contentWrapper
+      .style("position", "sticky")
+      .style("height", `${window.innerHeight - headerHeight}px`)
+      .style("top", `${headerHeight}px`)
   }
 }

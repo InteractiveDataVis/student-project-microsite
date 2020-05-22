@@ -17,7 +17,9 @@ class Controller {
   };
 
   constructor() {
-    this.app = select("body").append("div").attr("class", "container");
+    select("body").append("div")
+      .attr("id", "grid")
+
     this.animation = new Animation();
     this.animation.startAnimation();
 
@@ -26,12 +28,28 @@ class Controller {
       this.init();
       console.log("this.data", this.data);
     });
+
+    this.handleScroll = this.handleScroll.bind(this)
   }
 
   init() {
+    // set it so window scrolls to top when reset
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    };
+
     this.title = new Title();
     this.studentList = new StudentList(this.data);
     this.content = new Content(this.data);
+
+    // to switch the title to fixed header on scroll
+    // observe when bottom content section comes into screen
+    this.observer = new IntersectionObserver(this.handleScroll, {
+      root: null,
+      rootMargin: '0px',
+      threshold: [.1],
+    });
+    this.observer.observe(this.content.node)
 
     // fade in the title and student list
     setTimeout(() => {
@@ -43,8 +61,15 @@ class Controller {
     window.addEventListener("resize", () => this.resize());
   }
 
+  handleScroll(entries) {
+    console.log('entries', entries)
+    if (entries[0].isIntersecting) {
+      this.title.makeFixed()
+    }
+    else this.title.makeUnFixed()
+  }
+
   resize() {
-    console.log("resizing");
     this.animation.resize();
   }
 }

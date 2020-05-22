@@ -1,15 +1,22 @@
+@import "./assets/styles/fonts/fonts";
+@import "./assets/styles/variables";
+
 $duration: 1000ms;
+$maxWidth: 60em;
 
 body {
-  font-family: "Open Sans";
+  font-family: $fontRegular;
+  font-size: $fontSizeBase;
+  color: $colorTextGrey;
 }
-div.container {
-  padding: 1em;
+
+#grid{
   position: relative;
   display: grid;
-  grid-template-columns: 3fr 1fr;
-  grid-template-rows: 100vh auto;
-  z-index: 1;
+  grid-template-columns: repeat(12, [col-start] 1fr);
+  column-gap: 1%;
+  max-width:$maxWidth;
+  margin: 0 auto; // center
 }
 
 canvas#animation {
@@ -23,23 +30,59 @@ canvas#animation {
   position: sticky;
   top: 3rem;
   height: fit-content;
-  font-weight: 700;
-  font-size: 4em;
-  line-height: 1.2em;
   opacity: 0;
-  transition: opacity $duration;
-  color: transparent;
-  -webkit-text-stroke: black 2px;
+  transition: opacity $duration; // for fade in
+  grid-column: col-start /span 7;
+  padding: 0 2rem;
+
+  .title{
+    font-family: $fontBlack;
+    font-size: $fontSizeXLarge;
+    line-height: 1em;
+    color: transparent;
+    -webkit-text-stroke: black 1px;
+    transform-origin: left;
+    transition: transform $duration; // for transition to header
+  }
+
+  .subtitle{
+    margin-top: 1em;
+    max-width: 30em;
+    font-family: $fontRegular;
+  }
 
   &.visible {
     opacity: 1;
+  }
+
+  &.fixed { // still postion:sticky from above
+    grid-column: col-start/span 12;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-bottom: 0.5px solid #aaa;
+    box-sizing: border-box;
+    z-index: 5;
+
+    .title{
+      transform: scale(.8);
+      max-width: 40rem;
+    }
+
+    .subtitle{
+      display: none;
+    }
   }
 }
 
 #student-list {
   position: relative;
   align-self: center;
-  // top: 3rem;
+  font-family: $fontLight;
+  grid-column: col-start 10/ span 3;
+  margin: 3rem 0;
+  min-height: 100vh;
 
   .row {
     opacity: 0;
@@ -51,7 +94,7 @@ canvas#animation {
     }
 
     &:hover {
-      font-weight: 700;
+      font-family: $fontBold;
     }
   }
 }
@@ -60,6 +103,7 @@ canvas#animation {
   position: relative;
   padding: 2rem;
   background-color: white;
+  grid-column: col-start / span 12;
 
   .student {
     position: relative;
@@ -67,8 +111,8 @@ canvas#animation {
     padding: 1em 0;
 
     .student-name {
-      font-size: 3em;
-      font-weight: 700;
+      font-size: $fontSizeLarge;
+      font-family: $fontBold;
       text-transform: uppercase;
     }
 

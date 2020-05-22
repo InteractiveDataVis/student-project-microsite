@@ -11,7 +11,7 @@ export class StudentList {
   }
 
   init() {
-    this.list = select(".container").append("div").attr("id", "student-list");
+    this.list = select("#grid").append("div").attr("id", "student-list");
 
     this.list
       .selectAll("div.row")

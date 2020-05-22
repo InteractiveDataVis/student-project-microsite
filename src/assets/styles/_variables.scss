@@ -1,0 +1,16 @@
+// Typography
+
+$fontRegular: "Regular";
+$fontBold: "Bold";
+$fontLight: "Light";
+$fontBlack: "Black";
+
+$fontSizeBase: 16px;
+$fontSizeLarge: $fontSizeBase * 1.618;
+$fontSizeXLarge: $fontSizeLarge * 1.618 * 1.618;
+$fontSizeSmall: $fontSizeBase / 1.618;
+$fontSizeXSmall: $fontSizeSmall / 1.618;
+
+// Colors
+
+$colorTextGrey: #3a3a3a;
