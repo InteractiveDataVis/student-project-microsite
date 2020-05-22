@@ -55,7 +55,7 @@ class Controller {
     this.observer = new IntersectionObserver(this.handleScroll, {
       root: null,
       rootMargin: '0px',
-      threshold: [.1],
+      threshold: [.05],
     });
     this.observer.observe(this.content.node)
 

@@ -108,7 +108,7 @@ canvas#animation {
   .student {
     position: relative;
     border-bottom: 0.5px black solid;
-    padding: 1em 0;
+    padding: 2em 0;
 
     .student-name {
       font-size: $fontSizeLarge;
@@ -117,8 +117,26 @@ canvas#animation {
     }
 
     .student-socials {
-      .github {
+      img {
         height: 1.5em;
+        cursor: pointer;
+        padding-right: 0.5rem;
+        transform-origin: center;
+        color: $colorTextGrey;
+
+        &:hover{
+          transform: scale(1.2);
+        }
+      }
+    }
+
+    .student-work-grid{
+      margin-top: .5em;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      .student-img{
+        width: 100%;
       }
     }
 

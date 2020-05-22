@@ -6,9 +6,9 @@ export const keys = {
   desc: "description",
   github: "github",
   portfolio: "portfolioLink",
-  website: "websiteLink",
   title: "portfolioTitle",
-  previewImg: "previewImg",
+  prevImg1: "img1",
+  prevImg2: "img2"
 };
 
 export const appConfig = {
