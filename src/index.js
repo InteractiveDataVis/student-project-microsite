@@ -8,7 +8,7 @@ import "./style.scss";
 
 import { appConfig, keys } from "./utils/constants";
 const { titleDelay } = appConfig;
-const { name } = keys
+const { name } = keys;
 
 class Controller {
   state = {
@@ -18,18 +18,10 @@ class Controller {
   };
 
   constructor() {
-    select("body").append("div")
-      .attr("id", "grid")
+    select("body").append("div").attr("id", "grid");
 
     this.animation = new Animation();
     this.animation.startAnimation();
-
-    /**TO GET URL FOR  LIVE GOOGLE SHEEETS DATA,
-     * UNCOMMENT THIS:
-     * */
-    // const sheetOpt = { id: "1jg1quJkA0nngDk6mu-DBl7kv0ZYtU4XmLEmrbewTuuI", gid: 1307304957 }
-    // const sheetURL = `https://docs.google.com/spreadsheets/u/1/d/${sheetOpt.id}/export?format=csv&id=${sheetOpt.id}&gid=${sheetOpt.gid}`;
-    // console.log('sheetURL', sheetURL)
 
     csv("public/siteData.csv", autoType).then((data) => {
       this.data = data.sort((a, b) => ascending(a[name], b[name]));
@@ -37,7 +29,7 @@ class Controller {
       console.log("this.data", this.data);
     });
 
-    this.handleScroll = this.handleScroll.bind(this)
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   init() {
@@ -54,10 +46,10 @@ class Controller {
     // observe when bottom content section comes into screen
     this.observer = new IntersectionObserver(this.handleScroll, {
       root: null,
-      rootMargin: '0px',
-      threshold: [.05],
+      rootMargin: "0px",
+      threshold: [0.05],
     });
-    this.observer.observe(this.content.node)
+    this.observer.observe(this.content.node);
 
     // fade in the title and student list
     setTimeout(() => {
@@ -71,9 +63,8 @@ class Controller {
 
   handleScroll(entries) {
     if (entries[0].isIntersecting) {
-      this.title.makeFixed()
-    }
-    else this.title.makeUnFixed()
+      this.title.makeFixed();
+    } else this.title.makeUnFixed();
   }
 
   resize() {

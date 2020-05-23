@@ -8,13 +8,16 @@ export const keys = {
   portfolio: "portfolioLink",
   title: "portfolioTitle",
   prevImg1: "img1",
-  prevImg2: "img2"
+  prevImg2: "img2",
 };
 
 export const appConfig = {
   titleDelay: 2500,
   getHash: (str) => str.toLowerCase().split(" ").join("_").split(",").join("_"),
 };
+
+appConfig.makeImgPath = (name, key) =>
+  `./public/images/${appConfig.getHash(name)}_${key}.png`;
 
 export const animationConfig = {
   getWidth: () => window.innerWidth,

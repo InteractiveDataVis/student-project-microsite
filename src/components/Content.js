@@ -35,45 +35,61 @@ export class Content {
     const socials = [
       { key: github, icon: GithubIcon, title: "Open Github" },
       { key: portfolio, icon: LaunchIcon, title: "See Portfolio" },
-    ]
+    ];
 
     // socials
     this.students
       .selectAll("student-socials")
-      .data(d => socials.map(s => ({
-        ...s,
-        link: d[s.key],
-        title: d[title] ? `See ${d[title]}` : s.title
-      })))
+      .data((d) =>
+        socials.map((s) => ({
+          ...s,
+          link: d[s.key],
+          title: d[title] ? `See ${d[title]}` : s.title,
+        }))
+      )
       .join("a")
-      .filter(d => d.link)
+      .filter((d) => d.link)
       .attr("class", "student-socials")
       .attr("href", (d) => d.link)
-      .attr("title", d => d.title)
+      .attr("title", (d) => d.title)
       .attr("target", "_blank")
       .attr("rel", "noopener")
       .append("img")
-      .attr("class", d => d.key)
-      .attr("src", d => d.icon);
+      .attr("class", (d) => d.key)
+      .attr("src", (d) => d.icon);
 
     // description
-    const work = this.students.append("div")
-      .attr("class", "student-work-grid")
+    const work = this.students.append("div").attr("class", "student-work-grid");
 
-    work.append("div")
+    work
+      .append("div")
       .attr("class", "student-desc")
       .text((d) => d[desc]);
 
-    const images = [prevImg1, prevImg2]
+    const images = [prevImg1, prevImg2];
 
-    work.append("div")
+    work
+      .append("div")
       .attr("class", "student-images")
-      .selectAll(".student-img").data(d => images.map(i => d[i]).filter(d => d))
-      .join("img")
-    // Note: currently REALLY slow — need to find image loading solution
-    // .attr("loading", "lazy")
-    // .attr("class", "student-img")
-    // .attr("src", d => d);
+      .selectAll(".student-img")
+      .data((d) =>
+        images
+          .map((i) => ({
+            img: d[i],
+            [portfolio]: d[portfolio],
+            [title]: d[title],
+          }))
+          .filter((d) => d.img)
+      )
+      .join("a")
+      .attr("class", "student-img")
+      .attr("href", (d) => d[portfolio])
+      .attr("title", (d) => d[title])
+      .attr("target", "_blank")
+      .attr("rel", "noopener")
+      .append("img")
+      .attr("loading", "lazy")
+      .attr("src", (d) => d.img);
 
     this.students
       .append("span")
@@ -89,14 +105,14 @@ export class Content {
   }
 
   get node() {
-    return this.contentWrapper.node()
+    return this.contentWrapper.node();
   }
 
   makeFixed(headerHeight = 250) {
-    console.log('in make fixed')
+    console.log("in make fixed");
     this.contentWrapper
       .style("position", "sticky")
       .style("height", `${window.innerHeight - headerHeight}px`)
-      .style("top", `${headerHeight}px`)
+      .style("top", `${headerHeight}px`);
   }
 }
