@@ -20,6 +20,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: "Interactive Data Visualization Microsite",
+      favicon: "./public/favicon.ico",
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
