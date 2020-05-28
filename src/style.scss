@@ -119,6 +119,26 @@ canvas#animation {
       text-transform: uppercase;
     }
 
+    .student-desc{
+
+      a{
+        text-decoration: none;
+        .project-title{
+          padding-top: 0.5em;
+          font-family: $fontBold;
+          text-transform: uppercase;
+          transform-origin: left;
+          color: $colorTextGrey;
+          font-size: larger;
+
+          &:hover{
+            color: $colorEmphasis;
+          }
+
+        }
+      }
+    }
+
     .student-socials {
       img {
         height: 1.5em;

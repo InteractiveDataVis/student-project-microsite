@@ -64,7 +64,14 @@ export class Content {
     work
       .append("div")
       .attr("class", "student-desc")
-      .text((d) => d[desc]);
+      .text((d) => d[desc])
+      .append("a")
+      .attr("href", (d) => d[portfolio])
+      .attr("target", "_blank")
+      .attr("rel", "noopener")
+      .append("div")
+      .attr("class", "project-title")
+      .html((d) => d[title])
 
     const images = [prevImg1, prevImg2];
 
