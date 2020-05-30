@@ -21,6 +21,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: "Interactive Data Visualization Microsite",
       favicon: "./public/favicon.ico",
+      template: "./src/index.html",
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
